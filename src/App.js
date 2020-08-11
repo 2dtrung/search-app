@@ -1,48 +1,35 @@
 import React, { Component } from 'react'
+import Search from './components/Search'
+import ImageList from './components/ImageList'
+import api from './api/api'
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: [
-                {title: 'post1', content: 'content 1'},
-                {title: 'post2', content: 'content 2'},
-                {title: 'post3', content: 'content 3'}
-            ],
-            title: '',
-            content: ''
-        }
+    state = {
+        images: []
     }
-    handleChangeTitle = (event) => {
-        this.setState({title: event.target.value})
-    }
-    handleChangeContent = (event) => {
-        this.setState({content: event.target.value})
-    }
-    handleSubmit = (event) => {
-        event.preventDefault()
 
-        let {title, content } = this.state;
-        this.setState({posts: [...this.state.posts, {title, content}]})
-        this.setState({title:''})
-        this.setState({content: ''})
+    async componentDidMount() {
+        const response = await api.get("/search/photos", {
+            params: { query: 'car', per_page: 30, page: Math.floor(Math.random() * 100) + 1 }
+        });
+        this.setState({ images: response.data.results });
+    }
+
+    handleSearchTerm = async(term) => {
+        const response = await api.get("/search/photos", {
+            params: { query: term, per_page: 30, page: Math.floor(Math.random() * 100) + 1 }
+        });
+        this.setState({ images: response.data.results });
     }
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-12">
-                        <form onSubmit={this.handleSubmit}>
-                            <label>Search Image:</label>
-                            <input name="title" value={this.state.title} onChange={this.handleChangeTitle}/>
-                        </form>
-                    </div>
-                </div>
-                <div className="row">
-                </div>
+            <div className="ui container" style={{ marginTop: "10px"}}>
+                <Search search={this.handleSearchTerm}/>
+                <ImageList images={this.state.images}/>
             </div>
         )
     }
+
 }
 
 export default App
