@@ -1,7 +1,6 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
-
+# Search Application Website
 > This is an simple website using ReactJS, Javascript and calling API to receive data. Allow search picture from keyword you type.
 
 ![screenshot](./screenshot.png)
@@ -51,8 +50,8 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/2dtrung)
-- Twitter: [@twitterhandle](https://twitter.com/2dtrung)
+- GitHub: [@github](https://github.com/2dtrung)
+- Twitter: [@twitter](https://twitter.com/2dtrung)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/2dtrung)
 
 ## 🤝 Contributing
